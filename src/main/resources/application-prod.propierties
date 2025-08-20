@@ -1,23 +1,19 @@
-# Configuración para Railway
+# Configuración Railway - SIN ERRORES
 server.port=${PORT:8080}
 
-# Base de datos MySQL (Railway)
-spring.datasource.url=${SPRING_DATASOURCE_URL}
+# Base de datos
+spring.datasource.url=${DATABASE_URL}
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-# JPA/Hibernate
-spring.jpa.hibernate.ddl-auto=${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
-spring.jpa.database-platform=${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.MySQL8Dialect}
+# JPA - CAMBIO CRÍTICO: update en lugar de create-drop
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.show-sql=false
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
 # Configuración adicional para Railway
 spring.jpa.properties.hibernate.jdbc.time_zone=UTC
 spring.datasource.hikari.maximum-pool-size=5
-
-# Seguridad
-server.error.include-message=never
-server.error.include-binding-errors=never
+spring.datasource.hikari.connection-timeout=30000
 
 # Logging
 logging.level.com.servicebook=INFO
